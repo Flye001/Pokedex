@@ -22,7 +22,7 @@ def start():
 	pygame.init()
 	screen = pygame.display.set_mode((475,475),0,32)
 	screen.fill(black)
-	poke_ball = 'pokeball.png'
+	poke_ball = '/home/pi/pokedex/pokes/pokeball.png'
 	pokemon_ball = pygame.image.load(poke_ball).convert_alpha()
 	screen.blit(pokemon_ball, (0,0))
 	pygame.display.update()
@@ -34,7 +34,7 @@ def start():
 			green.off()
 			pokemon2 = raw_input('Enter a Pokemon name: ')
 			str(pokemon2)
-			pokemon1 = 'home/pi/pokedex/pokes' + pokemon2 + '.png'
+			pokemon1 = '/home/pi/pokedex/pokes/' + pokemon2 + '.png'
 			os.system('clear')
 			print('Press the reset to go back')
 			pokemon = pygame.image.load(pokemon1).convert_alpha()
