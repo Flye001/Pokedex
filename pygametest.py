@@ -2,7 +2,7 @@ import pygame, sys
 from pygame.locals import *
 import time
 
-psyduckk = '/home/pi/pokedex/psyduck.png'
+psyduckk = '/home/pi/pokedex/pokes/psyduck.png'
 
 pygame.init()
 screen = pygame.display.set_mode((475,475),0,32)
