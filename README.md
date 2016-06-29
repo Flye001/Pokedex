@@ -1,4 +1,4 @@
 # Pokedex
-##My Pokedex code by Philip Organ
+##My Pokedex code by Flye001
 
 ![pokedex](picture/pokeball.png)
