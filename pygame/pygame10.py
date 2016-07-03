@@ -32,8 +32,7 @@ def start():
 			orange.on()
 			blue.on()
 			green.off()
-			white = (255,255,255)
-			screen.fill(white)
+			screen.fill(black)
 			bars1 = '/home/pi/pokedex/pokes/bars.png'
 			bars = pygame.image.load(bars1).convert_alpha()
 			screen.blit(bars, (0,0))
