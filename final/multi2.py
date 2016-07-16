@@ -12,6 +12,7 @@ from matrix_keypad import RPi_GPIO
 #blue = LED(10)
 button1 = Button(2)
 button2 = Button(3)
+wait = 0.5
 
 kp = RPi_GPIO.keypad(columnCount = 4)
 
@@ -54,16 +55,24 @@ def start():
 			print('Enter a Pokemon number: ')
 			pp1 = digit()
 			print pp1
-			time.sleep(1)
+			time.sleep(wait)
 			pp2 = digit()
                         print pp2
-                        time.sleep(1)
+                        time.sleep(wait)
 			pp3 = digit()
                         print pp3
                         p1 = str(pp1)
 			p2 = str(pp2)
 			p3 = str(pp3)
 			pokemon2 = p1+p2+p3
+			check = int(pokemon2)
+			if check >=152:
+				os.system('clear')
+				print ("THAT'S NOT A POKEMON!!!")
+				print('Press the reset (red) button to go back')
+				pokemon1 = '/home/pi/pokedex/pokes/pokeball.png'
+				pokemon = pygame.image.load(pokemon1).convert_alpha()
+				break
 			pokemon1 = '/home/pi/pokedex/pokes/' + pokemon2 + '.png'
 			os.system('clear')
 			print(pokemon2)
