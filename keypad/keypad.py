@@ -43,23 +43,30 @@ def digit():
 print "Please enter a 4 digit code: "
  
 # Getting digit 1, printing it, then sleep to allow the next digit press.
-d1 = digit()
-print d1
+dd1 = digit()
+print dd1
 sleep(1)
  
-d2 = digit()
-print d2
+dd2 = digit()
+print dd2
 sleep(1)
- 
-d3 = digit()
-print d3
+
+dd3 = digit()
+print dd3
 sleep(1)
- 
-d4 = digit()
-print d4
+
+dd4 = digit()
+print dd4
  
 # printing out the assembled 4 digit code.
-print "You Entered %s%s%s%s "%(d1,d2,d3,d4) 
+print "You Entered %s%s%s%s "%(dd1,dd2,dd3,dd4) 
 
-value = d1+d2+d3+d4
+value = dd1+dd2+dd3+dd4
 print value
+
+d1 = str(dd1)
+d2 = str(dd2)
+d3 = str(dd3)
+d4 = str(dd4)
+
+print d1 + d2 + d3 + d4
