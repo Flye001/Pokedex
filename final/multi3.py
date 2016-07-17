@@ -37,15 +37,16 @@ def digit():
 	return r
 
 def clearLCD():
-	#clear = Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
-	#clear1 = ImageDraw.Draw(clear)
-	#clear1.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=0, fill=255)
-	#disp.image(clear)
+	#image = Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
+	#draw = ImageDraw.Draw(image)
+	#draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=0, fill=255)
+	#disp.image(image)
 	#disp.display()
 	disp.clear()
 	disp.display()
 
 def start():
+	clearLCD()
 	os.system('clear')
 	print('Loading...')
 	#red.on()
@@ -98,7 +99,7 @@ def start():
 				break
 			pokemon1 = '/home/pi/pokedex/pokes/' + pokemon2 + '.png'
 			os.system('clear')
-			print(pokemon2)
+			print 'Now Showing Pokemon: ', pokemon2
 			print('Press the reset (red) button to go back')
 			pokemon = pygame.image.load(pokemon1).convert_alpha()
 			break
@@ -118,5 +119,38 @@ def start():
         	screen.blit(pokemon, (0,0))
         	pygame.display.update()
 
-#clearLCD()
-start()
+clearLCD()
+#start()
+image = Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
+
+# Gedisp.image(image)
+disp.display()
+#t drawing object to draw on image.
+draw = ImageDraw.Draw(image)
+
+# Draw a white filled box to clear the image.
+draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=0, fill=255)
+
+# Draw some shapes.
+draw.ellipse((2,2,22,22), outline=0, fill=255)
+draw.rectangle((24,2,44,22), outline=0, fill=255)
+draw.polygon([(46,22), (56,2), (66,22)], outline=0, fill=255)
+draw.line((68,22,81,2), fill=0)
+draw.line((68,2,81,22), fill=0)
+
+# Load default font.
+font = ImageFont.load_default()
+
+# Alternatively load a TTF font.
+# Some nice fonts to try: http://www.dafont.com/bitmap.php
+# font = ImageFont.truetype('Minecraftia.ttf', 8)
+
+# Write some text.
+draw.text((8,30), 'Hello World!', font=font)
+
+# Display image.
+disp.image(image)
+disp.display()
+
+time.sleep(10)
+clearLCD()
