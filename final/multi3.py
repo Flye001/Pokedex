@@ -45,6 +45,27 @@ def clearLCD():
 	disp.clear()
 	disp.display()
 
+def writeLCD(LCDtext,LCDx,LCDy):
+	clearLCD()
+	#start()
+	image = Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
+	# Gedisp.image(image)
+	disp.display()
+	#t drawing object to draw on image.
+	draw = ImageDraw.Draw(image)
+	# Draw a white filled box to clear the image.
+	draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=255, fill=255)
+	# Load default font.
+	font = ImageFont.load_default()
+	# Alternatively load a TTF font.
+	# Some nice fonts to try: http://www.dafont.com/bitmap.php
+	# font = ImageFont.truetype('Minecraftia.ttf', 8)
+	# Write some text.
+	draw.text((LCDx,LCDy), LCDtext, font=font)
+	# Display image.
+	disp.image(image)
+	disp.display()
+
 def start():
 	clearLCD()
 	os.system('clear')
@@ -119,38 +140,8 @@ def start():
         	screen.blit(pokemon, (0,0))
         	pygame.display.update()
 
-clearLCD()
 #start()
-image = Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
-
-# Gedisp.image(image)
-disp.display()
-#t drawing object to draw on image.
-draw = ImageDraw.Draw(image)
-
-# Draw a white filled box to clear the image.
-draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=0, fill=255)
-
-# Draw some shapes.
-draw.ellipse((2,2,22,22), outline=0, fill=255)
-draw.rectangle((24,2,44,22), outline=0, fill=255)
-draw.polygon([(46,22), (56,2), (66,22)], outline=0, fill=255)
-draw.line((68,22,81,2), fill=0)
-draw.line((68,2,81,22), fill=0)
-
-# Load default font.
-font = ImageFont.load_default()
-
-# Alternatively load a TTF font.
-# Some nice fonts to try: http://www.dafont.com/bitmap.php
-# font = ImageFont.truetype('Minecraftia.ttf', 8)
-
-# Write some text.
-draw.text((8,30), 'Hello World!', font=font)
-
-# Display image.
-disp.image(image)
-disp.display()
-
+clearLCD()
+writeLCD('F*ck IT WORKS!', 0, 0)
 time.sleep(10)
 clearLCD()
