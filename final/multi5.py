@@ -110,6 +110,7 @@ def start():
 			screen.blit(bars, (0,0))
 			pygame.display.update()
 			clearLCD()
+			printLCD('Enter a number:', 0, 0)
 			print('Enter a Pokemon number: ')
 			pp1 = digit()
 			pdisplay = str(pp1)
@@ -133,6 +134,8 @@ def start():
 			pokemon2 = p1+p2+p3
 			check = int(pokemon2)
 			if check >=152:
+				clearLCD()
+				printLCD('ERROR!!!', 0, 0)
 				os.system('clear')
 				print ("THAT'S NOT A POKEMON!!!")
 				print('Press the reset (red) button to go back')
@@ -140,6 +143,7 @@ def start():
 				pokemon = pygame.image.load(pokemon1).convert_alpha()
 				break
 			pokemon1 = '/home/pi/pokedex/pokes/' + pokemon2 + '.png'
+			imageLCD(pokemon2)
 			os.system('clear')
 			print 'Now Showing Pokemon: ', pokemon2
 			print('Press the reset (red) button to go back')
