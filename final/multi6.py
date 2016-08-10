@@ -29,7 +29,7 @@ wait = 0.5
 kp = RPi_GPIO.keypad(columnCount = 4)
 disp = LCD.PCD8544(DC, RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=4000000))
 
-disp.begin(contrast=35)
+disp.begin(contrast=30)
 
 def digit():
 	r = None
@@ -47,7 +47,6 @@ def clearLCD():
 	disp.display()
 
 def printLCD(LCDtext,LCDx,LCDy):
-	clearLCD()
 	#start()
 	image = Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
 	# Gedisp.image(image)
@@ -92,6 +91,7 @@ def start():
 	poke_ball = '/home/pi/pokedex/pokes/pokeball.png'
 	pokemon_ball = pygame.image.load(poke_ball).convert_alpha()
 	screen.blit(pokemon_ball, (0,0))
+	time.sleep(3)
 	pygame.display.update()
 	imageLCD('pokeball')
 	os.system('clear')
@@ -134,14 +134,24 @@ def start():
 			pokemon2 = p1+p2+p3
 			check = int(pokemon2)
 			if check >=152:
-				clearLCD()
-				printLCD('ERROR!!!', 0, 0)
-				os.system('clear')
-				print ("THAT'S NOT A POKEMON!!!")
-				print('Press the reset (red) button to go back')
-				pokemon1 = '/home/pi/pokedex/pokes/pokeball.png'
-				pokemon = pygame.image.load(pokemon1).convert_alpha()
-				break
+				blue.off()
+				green.off()
+				orange.off()
+				red.off()
+				pokeerror = 0
+				while pokeerror == 0:
+					clearLCD()
+					printLCD('ERROR!!!', 0, 0)
+					os.system('clear')
+					print ("THAT'S NOT A POKEMON!!!")
+					print('Press the reset (red) button to go back')
+					pokemon1 = '/home/pi/pokedex/pokes/pokeball.png'
+					pokemon = pygame.image.load(pokemon1).convert_alpha()
+					if button2.is_pressed:
+						start()
+					red.on()
+					time.sleep(0.25)
+					red.off()
 			pokemon1 = '/home/pi/pokedex/pokes/' + pokemon2 + '.png'
 			imageLCD(pokemon2)
 			os.system('clear')
@@ -151,6 +161,7 @@ def start():
 			break
 		if button2.is_pressed:
 			os.system('clear')
+			clearLCD()
 			pygame.quit()
 			sys.exit()
 
