@@ -1,7 +1,7 @@
 # Pokedex
 ##My Pokedex code by Flye001
 
-![pokeball](pokes/mewtwo.png)
+![pokeball](images/pikachu.png)
 
 In the summer holidays I am aiming to make a real life pokedex. 
 This is where I am backing up my code just incase of disaster.
