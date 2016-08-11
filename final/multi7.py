@@ -69,7 +69,7 @@ def printLCD(LCDtext,LCDx,LCDy):
 def imageLCD(LCDimage):
 	clearLCD()
 	LCDpoke = str(LCDimage)
-	Opoke = '/home/pi/pokedex/pokes/' + LCDpoke + '.png'
+	Opoke = '/home/pi/pokedex/images/' + LCDpoke + '.png'
 	poke = str(Opoke)
 	image = Image.open(poke).resize((LCD.LCDWIDTH, LCD.LCDHEIGHT), Image.ANTIALIAS).convert('1')
 	disp.image(image)
@@ -138,6 +138,11 @@ def start():
 				green.off()
 				orange.off()
 				red.off()
+				error2 = '/home/pi/pokedex/images/error.png'
+				error = pygame.image.load(error2).convert_alpha()
+        		        screen.fill(black)
+        	        	screen.blit(error, (0,0))
+				pygame.display.update()
 				pokeerror = 0
 				while pokeerror == 0:
 					clearLCD()
@@ -145,8 +150,6 @@ def start():
 					os.system('clear')
 					print ("THAT'S NOT A POKEMON!!!")
 					print('Press the reset (red) button to go back')
-					pokemon1 = '/home/pi/pokedex/images/pokeball.png'
-					pokemon = pygame.image.load(pokemon1).convert_alpha()
 					if button2.is_pressed:
 						start()
 					red.on()
