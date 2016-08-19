@@ -91,7 +91,7 @@ def start():
 	poke_ball = '/home/pi/pokedex/images/pokeball.png'
 	pokemon_ball = pygame.image.load(poke_ball).convert_alpha()
 	screen.blit(pokemon_ball, (0,0))
-	time.sleep(3)
+	time.sleep(1)
 	pygame.display.update()
 	imageLCD('pokeball')
 	os.system('clear')
@@ -133,7 +133,7 @@ def start():
 			p3 = str(pp3)
 			pokemon2 = p1+p2+p3
 			check = int(pokemon2)
-			if check >=152:
+			if check >=252:
 				blue.off()
 				green.off()
 				orange.off()
