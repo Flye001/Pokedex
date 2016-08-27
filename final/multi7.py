@@ -4,6 +4,7 @@ import time
 import os
 import Adafruit_Nokia_LCD as LCD
 import Adafruit_GPIO.SPI as SPI
+from picamera import PiCamera
 from gpiozero import LED
 from gpiozero import Button
 from pygame.locals import *
@@ -12,6 +13,8 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 from PIL import Image
+
+camera = PiCamera()
 
 DC = 23
 RST = 24
@@ -29,7 +32,17 @@ wait = 0.5
 kp = RPi_GPIO.keypad(columnCount = 4)
 disp = LCD.PCD8544(DC, RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=4000000))
 
-disp.begin(contrast=30)
+disp.begin(contrast=50)
+
+def cameratest():
+	camera.resolution = (475, 475)
+	camera.start_preview()
+	while True:
+		if button1.is_pressed:
+			camera.capture('/home/pi/pokedex/CameraOut/054image.jpg', resize = (475, 475))
+			camera.stop_preview()
+			os.system("convert -composite /home/pi/pokedex/CameraOut/054.jpg /home/pi/pokedex/images/054.jpg 054image.jpg")
+			break
 
 def digit():
 	r = None
@@ -150,7 +163,7 @@ def start():
 					os.system('clear')
 					print ("THAT'S NOT A POKEMON!!!")
 					print('Press the reset (red) button to go back')
-					if button2.is_pressed:
+					if button1.is_pressed:
 						start()
 					red.on()
 					time.sleep(0.25)
@@ -173,11 +186,12 @@ def start():
 		orange.off()
 		blue.off()
 		green.on()
-		if button2.is_pressed:
+		if button1.is_pressed:
 			start()
 		screen.fill(black)
         	screen.blit(pokemon, (0,0))
         	pygame.display.update()
 
 clearLCD()
-start()
+#start()
+cameratest()
