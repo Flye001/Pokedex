@@ -40,11 +40,15 @@ def cameratest():
 	while True:
 		if button1.is_pressed:
 			camera.stop_preview()
-			camera.capture('/home/pi/pokedex/CameraOut/pokemon.jpg')
-			background = Image.open("/home/pi/pokedex/CameraOut/pokemon.jpg")
-			foreground = Image.open("/home/pi/pokedex/images/025.png")
-			background.paste(background, (0, 0), foreground)
-			background.save('newimg.png')
+			camera.capture('/home/pi/pokedex/CameraOut/pokemon.png')
+#			background = Image.open("/home/pi/pokedex/CameraOut/pokemon.jpg")
+#			foreground = Image.open("/home/pi/pokedex/images/025.png")
+#			background.paste(foreground, (0, 0))
+#			background.save('newimg.png')
+			imbg = Image.open("/home/pi/pokedex/CameraOut/pokemon.png")
+			imfg = Image.open("/home/pi/pokedex/images/025.png")
+			imbg.paste(imfg, None, imfg)
+			imbg.save("/home/pi/pokedex/CameraOut/overlay.png")
 			break
 
 def digit():

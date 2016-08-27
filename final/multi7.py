@@ -32,7 +32,7 @@ wait = 0.5
 kp = RPi_GPIO.keypad(columnCount = 4)
 disp = LCD.PCD8544(DC, RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=4000000))
 
-disp.begin(contrast=50)
+disp.begin(contrast=30)
 
 def cameratest():
 	camera.resolution = (475, 475)
@@ -193,5 +193,5 @@ def start():
         	pygame.display.update()
 
 clearLCD()
-#start()
-cameratest()
+start()
+#cameratest()
