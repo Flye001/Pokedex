@@ -44,7 +44,7 @@ def cameratest():
 			background = Image.open("/home/pi/pokedex/CameraOut/pokemon.jpg")
 			foreground = Image.open("/home/pi/pokedex/images/025.png")
 			background.paste(background, (0, 0), foreground)
-			background.show()
+			background.save('newimg.png')
 			break
 
 def digit():
