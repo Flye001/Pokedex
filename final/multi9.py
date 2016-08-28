@@ -48,6 +48,7 @@ def cameratest():
 			imfg = imfg.resize((118, 118))
 			new_im = Image.new('RGBA', (475,475))
 			new_im.paste(imfg,(0,0))
+			## Add any logos here with new_im.paste(imfg,(??,??))
 			imbg.paste(new_im, None, new_im)
 			imbg.save("/home/pi/pokedex/CameraOut/overlay.png", "png")
         		screen.fill(black)
