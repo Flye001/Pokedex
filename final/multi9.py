@@ -34,9 +34,9 @@ disp = LCD.PCD8544(DC, RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=40
 disp.begin(contrast=50)
 pygame.init()
 screen = pygame.display.set_mode((475,475),0,32)
+black = (0,0,0)
 
 def cameratest():
-	black = (0,0,0)
 	camera.resolution = (475, 475)
 	camera.start_preview()
 	while True:
@@ -120,9 +120,6 @@ def start():
 	orange.off()
 	green.off()
 	blue.off()
-	black = (0,0,0)
-#	pygame.init()
-#	screen = pygame.display.set_mode((475,475),0,32)
 	screen.fill(black)
 	poke_ball = '/home/pi/pokedex/images/pokeball.png'
 	pokemon_ball = pygame.image.load(poke_ball).convert_alpha()
@@ -137,9 +134,22 @@ def start():
 		if button1.is_pressed:
 			os.system('clear')
 			red.off()
-			orange.on()
-			blue.on()
-			green.off()
+			orange.off()
+			blue.off()
+			green.on()
+			while True:
+				pp1 = digit()
+				if pp1 == 1:
+					break
+				elif pp1 == 2:
+					os.system('clear')
+					clearLCD()
+					pygame.exit()
+					sys.exit()
+				elif pp1 == 0:
+					cameratest()
+				else:
+					start()
 			screen.fill(black)
 			bars1 = '/home/pi/pokedex/images/bars.png'
 			bars = pygame.image.load(bars1).convert_alpha()
@@ -216,5 +226,5 @@ def start():
         	pygame.display.update()
 
 clearLCD()
-#start()
-cameratest()
+start()
+#cameratest()
