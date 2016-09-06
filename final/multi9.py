@@ -57,8 +57,7 @@ def cameratest():
 	        	screen.blit(pokemon_ball, (0,0))
 			pygame.display.update()
 			time.sleep(10)
-			pygame.quit()
-			sys.exit()
+			start()
 			break
 
 def digit():
@@ -114,14 +113,14 @@ def start():
 	pygame.init()
         screen = pygame.display.set_mode((475,475),0,32)
         screen.fill(black)
-        poke_ball = '/home/pi/pokedex/images/pokeball.png'
+        poke_ball = '/home/pi/pokedex/images/Logo.png'
         pokemon_ball = pygame.image.load(poke_ball).convert_alpha()
         screen.blit(pokemon_ball, (0,0))
 	orange.off()
 	green.off()
 	blue.off()
 	screen.fill(black)
-	poke_ball = '/home/pi/pokedex/images/pokeball.png'
+	poke_ball = '/home/pi/pokedex/images/Logo.png'
 	pokemon_ball = pygame.image.load(poke_ball).convert_alpha()
 	screen.blit(pokemon_ball, (0,0))
 	time.sleep(1)
